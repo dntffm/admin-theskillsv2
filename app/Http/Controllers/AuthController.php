@@ -10,10 +10,12 @@ class AuthController extends Controller
     public function authenticate(Request $request)
     {
         $credential = $request->only('email','password');
-
-        if(Auth::attempt(['email' => 'admin@the-skills.id', 'password' => 'cnpvak123']))
+        
+        if(Auth::attempt($credential))
         {
             return redirect()->route('admin.dashboard');
         }
+
+        return  redirect()->route('admin.welcome')->with;
     }
 }

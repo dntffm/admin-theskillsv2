@@ -9,7 +9,7 @@
                         Area</span></h4>
                 <p class="text-muted">Before you get started, you must login or register if you don't already have an
                     account.</p>
-                <form method="POST" action="{{action('AuthController@authenticate')}}" class="needs-validation" novalidate="">
+                <form method="POST" action="{{route('admin.login')}}" class="needs-validation" novalidate="">
                     @csrf
                     <div class="form-group">
                         <label for="email">Email</label>

@@ -1,48 +1,92 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Webinar;
+
 use Illuminate\Http\Request;
+use App\Webinar;
 class WebinarController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Display a listing of the resource.
      *
-     * @return void
+     * @return \Illuminate\Http\Response
      */
-    public function __construct()
+    public function index()
+    {
+        $webinars = Webinar::all();
+        return view('admin.webinar.index',compact('webinars'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+       return view('admin.webinar.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request,[
+            'webinar_name' => 'required',
+            'price' => 'required',
+            'flyer' => 'required|mimes:jpg,png'
+        ]);
+
+        return $request;
+        
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
         //
     }
 
-    public function getAll()
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
-        return Webinar::all();
+        //
     }
 
-    public function store(Request $request)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            "webinar_name" => 'required',
-            "description" => 'required',
-            'price' => 'required',
-            'flyer' => 'required',
-            'closed_at' => 'required',
-        ]);
-
-        if(Webinar::create($request->all())){
-            return response()->json(['message' => 'webinar berhasil disimpan'],200);
-        }
-        return response()->json(['message' => 'webinar gagal disimpan'],00);
+        //
     }
 
-    public function registerWebinar(Request $request)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
     {
-        $this->validate($request,[
-            'user_id' => 'required',
-            'webinar_id' => 'required'
-        ]);
-
-        
+        //
     }
 }

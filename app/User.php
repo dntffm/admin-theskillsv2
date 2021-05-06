@@ -2,60 +2,33 @@
 
 namespace App;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Database\Eloquent\Model;
-use Laravel\Lumen\Auth\Authorizable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Tymon\JWTAuth\Contracts\JWTSubject;
-use App\Traits\MustVerifyEmail;
-use Spatie\Permission\Traits\HasRoles;
-class User extends Model implements AuthenticatableContract, AuthorizableContract,JWTSubject
+
+class User extends Authenticatable
 {
-    use Authenticatable,HasRoles, Authorizable/* MustVerifyEmail, Notifiable */;
+    use Notifiable;
 
-
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
-
-    /* protected static function boot()
-    {
-    parent::boot();
-    
-    static::saved(function ($model) { */
-/**
-       * If user email have changed email verification is required
-       */
-      /* if( $model->isDirty('email') ) {
-        $model->setAttribute('email_verified_at', null);
-        $model->sendEmailVerificationNotification();
-      }
-    });
-    } */
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
-     * The attributes excluded from the model's JSON form.
+     * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = [
         'password',
+        'remember_token',
     ];
 
     /**

@@ -16,7 +16,9 @@ Route::get('/', function () {
     return view('admin.welcome');
 })->name('admin.welcome');
 Route::post('/auth/login','AuthController@authenticate')->name('admin.login');
-Route::get('/auth/logout','AuthController@logout')->name('admin.logout');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/auth/logout','AuthController@logout')->name('admin.logout');
 Route::get('/dashboard', function() {
     return view('admin.dashboard.index');
 })->name('admin.dashboard');
@@ -28,8 +30,6 @@ Route::resource('webinar', 'WebinarController')->names([
     'create' => 'admin.webinar.create',
     'store' => 'admin.webinar.store',
 ]);
-Route::middleware(['auth'])->group(function () {
-
     Route::resource('articles', 'ArticleController');
 
 });

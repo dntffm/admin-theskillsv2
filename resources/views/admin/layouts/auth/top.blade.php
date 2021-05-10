@@ -10,11 +10,11 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
   <!-- CSS Libraries -->
-  <link rel="stylesheet" href="{{asset('/stisla/node_modules/bootstrap-social/bootstrap-social.css')}}">
+  <link rel="stylesheet" href="{{asset('/node_modules/bootstrap-social/bootstrap-social.css')}}">
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="{{asset('/stisla/assets/css/style.css')}}">
-  <link rel="stylesheet" href="{{asset('/stisla/assets/css/components.css')}}">
+  <link rel="stylesheet" href="{{asset('/assets/css/style.css')}}">
+  <link rel="stylesheet" href="{{asset('/assets/css/components.css')}}">
 </head>
 
 <body>

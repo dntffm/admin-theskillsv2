@@ -2,47 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\CourseTitles;
-use App\Course;
-use App\Subcourse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use App\Subcourse;
 class SubcourseController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function index()
     {
-        //
+        $subcourses = Subcourse::all();
+        return view('admin.babcourse.index',compact('subcourses'));
     }
 
-    //
-   
-    public function createSubcourse(Request $request)
+    public function create()
     {
-        $this->validate($request,[
-            'subcourse_name' => 'required',
-            'sc_thumbnail' => 'required',
-            'course_id' => 'required'
-        ]);
-        $course = new Subcourse;
-
-        $course->subcourse_name = $request->subcourse_name;
-        $course->sc_thumbnail = $request->sc_thumbnail;
-        $course->course_id = $request->course_id;
-
-        if($course->save()){
-            return response()->json(["message" => "Tambah subcourse Berhasil"],200);
-        }
-        return response()->json(["message" => "Tambah subcourse gagal"],400);
+        return view('admin.babcourse.create');
     }
 
-    public function getSubcourseByCourse($course)
+    public function store(Request $request)
     {
-        return Course::where('id',$course)->with(['subcourses','subcourses.minicourse'])->first();
+        return $request;
     }
 }
-

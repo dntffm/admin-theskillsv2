@@ -9,6 +9,15 @@
                         Area</span></h4>
                 <p class="text-muted">Before you get started, you must login or register if you don't already have an
                     account.</p>
+                @if (session('message'))
+                <div class="alert alert-danger alert-has-icon">
+                    <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                    <div class="alert-body">
+                        <div class="alert-title">Danger</div>
+                        {{session('message')}}
+                    </div>
+                </div>
+                @endif
                 <form method="POST" action="{{route('admin.login')}}" class="needs-validation" novalidate="">
                     @csrf
                     <div class="form-group">
@@ -30,6 +39,15 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <div class="d-block">
+                            <label for="token" class="control-label">Token</label>
+                        </div>
+                        <input id="token" type="password" class="form-control" name="token" tabindex="2" required>
+                        <div class="invalid-feedback">
+                            Token for admin
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" name="remember" class="custom-control-input" tabindex="3"

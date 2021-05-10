@@ -17,7 +17,8 @@ class MembershipController extends Controller
 
     public function index()
     {
-        return Membership::all();
+        $membership =  Membership::all();
+        return view('admin.membership.index',compact('membership'));
     }
     public function store(Request $request)
     {

@@ -16,10 +16,13 @@ Route::get('/', function () {
     return view('admin.welcome');
 })->name('admin.welcome');
 Route::post('/auth/login','AuthController@authenticate')->name('admin.login');
+Route::get('/auth/logout','AuthController@logout')->name('admin.logout');
 Route::get('/dashboard', function() {
     return view('admin.dashboard.index');
 })->name('admin.dashboard');
-
+Route::resource('course', 'CourseController');
+Route::resource('subcourse', 'SubcourseController');
+Route::resource('membership', 'MembershipController');
 Route::resource('webinar', 'WebinarController')->names([
     'index' => 'admin.webinar',
     'create' => 'admin.webinar.create',

@@ -1,7 +1,7 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
-      <div class="sidebar-brand">
-        <a href="index.html">Stisla</a>
+      <div class="sidebar-brand pt-4">
+        <img src="{{asset('/assets/img/namtag.png')}}" width="150px">
       </div>
       <div class="sidebar-brand sidebar-brand-sm">
         <a href="index.html">St</a>
@@ -14,6 +14,8 @@
           <li><a class="nav-link" href="{{route('subcourse.index')}}"><i class="far fa-square"></i> <span>Materi Bab Course</span></a></li>
           <li><a class="nav-link" href="{{route('course.index')}}"><i class="far fa-square"></i> <span>Materi Subbab Course</span></a></li>
           
+          <li class="menu-header">Users</li>
+          <li><a class="nav-link" href="{{route('admin.user')}}"><i class="far fa-square"></i> <span>User Terdaftar</span></a></li>
           <li class="menu-header">Membership</li>
           <li><a class="nav-link" href="{{route('membership.index')}}"><i class="far fa-square"></i> <span>Paket Membership</span></a></li>
           <li class="menu-header">Lainnya</li>

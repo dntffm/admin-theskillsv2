@@ -16,10 +16,10 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h4>List webinar</h4>
+              <h4>List partisipan webinar</h4>
             </div>
             <div class="card-header">
-                <a href="{{route('admin.webinar.create')}}" class="btn btn-primary">Tambah Webinar</a>
+                <a href="" class="btn btn-primary">Download Excel</a>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -29,31 +29,31 @@
                       <th class="text-center">
                         #
                       </th>
-                      <th>Judul Webinar</th>
-                      <th>Harga</th>
-                      <th>Poster</th>
-                      <th>Tanggal Acara</th>
-                      <th>Status</th>
-                      <th>Action</th>
+                      <th>Nama</th>
+                      <th>Username</th>
+                      <th>No. HP</th>
+                      <th>Nama anak</th>
+                      <th>Sekolah</th>
+                      <th>Kelas</th>
+                      
                     </tr>
                   </thead>
                   <tbody>
-                      @foreach ($webinars as $index=>$webinar)
+                      @foreach ($webinardetail as $index=>$participant)
                         <tr>
                             <td>
                             {{$index+1}}
                             </td>
-                            <td>{{$webinar->webinar_name}}</td>
-                            <td>{{$webinar->price}}</td>
-                            <td>
-                            <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="" data-original-title="Wildan Ahdian">
-                            </td>
-                            <td>{{$webinar->closed_at}}</td>
-                            <td><div class="badge {{$webinar->status == 'on' ? 'badge-success' : 'badge-warning'}}">{{$webinar->status == 'on' ? 'Buka' : 'Tutup'}}</div></td>
-                            <td><a href="{{url('webinar').'/'.$webinar->id}}" class="btn btn-secondary">Detail</a></td>
+                            <td>{{$participant->name}}</td>
+                            <td>{{$participant->username}}</td>
+                            <td>{{$participant->phone_number}}</td>
+                            <td>{{$participant->child_name}}</td>
+                            <td>{{$participant->school}}</td>
+                            <td>{{$participant->grade}}</td>
                         </tr>
                       @endforeach
                   </tbody>
+                  {{$webinardetail->links()}}
                 </table>
               </div>
             </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Webinar;
+use DB;
 class WebinarController extends Controller
 {
     /**
@@ -53,7 +54,13 @@ class WebinarController extends Controller
      */
     public function show($id)
     {
-        //
+        $webinardetail = DB::table('webinar_participants')
+                        ->join('users','webinar_participants.user_id','=','users.id')
+                        //->groupBy('webinar_participants.user_id')
+                        ->where('webinar_participants.webinar_id','=',$id)
+                        ->paginate(10);
+        //return $webinardetail;
+        return view('admin.webinar.detail',compact('webinardetail'));
     }
 
     /**

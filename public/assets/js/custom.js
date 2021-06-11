@@ -6,3 +6,9 @@
  */
 
 "use strict";
+
+function addrecord(){
+    const recordtxt = document.querySelector('.linkrecordtxt');
+
+    recordtxt.innerHTML += `<input type="text" name="link_record[]" class="mt-2 form-control">`
+}

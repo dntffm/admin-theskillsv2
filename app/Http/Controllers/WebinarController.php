@@ -14,7 +14,7 @@ class WebinarController extends Controller
      */
     public function index()
     {
-        $webinars = Webinar::all();
+        $webinars = Webinar::orderBy('created_at','desc')->paginate(10);
         return view('admin.webinar.index',compact('webinars'));
     }
 
@@ -39,11 +39,33 @@ class WebinarController extends Controller
         $this->validate($request,[
             'webinar_name' => 'required',
             'price' => 'required',
+            'closed_at' => 'required',
             'flyer' => 'required|mimes:jpg,png'
         ]);
-
-        return $request;
         
+        $flyer = time().$request->file('flyer')->getClientOriginalName();
+        $path = $request->file('flyer')->storeAs(
+            'public/img', $flyer
+        );
+
+
+        $webinar = new Webinar;
+
+        $webinar->webinar_name = $request->webinar_name;
+        $webinar->price = $request->price;
+        $webinar->closed_at = $request->closed_at;
+        $webinar->flyer = $request->flyer;
+        $webinar->link_webinar = $request->link_webinar;
+        $webinar->description = $request->description;
+        $webinar->link_record = \json_encode( $request->link_record);
+        $webinar->status = $request->status == 'on' ? 'on' : 'off';
+        $webinar->flyer = $flyer;
+
+
+        if($webinar->save()){
+            return redirect()->back()->with('message-success','Tambah webinar berhasil!!');
+        }
+        return redirect()->back()->with('message-fail','Tambah webinar gagal!!');
     }
 
     /**

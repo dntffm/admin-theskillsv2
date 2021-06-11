@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
         'index' => 'admin.webinar',
         'create' => 'admin.webinar.create',
         'store' => 'admin.webinar.store',
+        'edit' => 'admin.webinar.edit',
     ]);
     Route::resource('articles', 'ArticleController');
     Route::resource('user', 'UserController')->names([

@@ -33,6 +33,8 @@
                       <th>Harga</th>
                       <th>Poster</th>
                       <th>Tanggal Acara</th>
+                      <th>Link Webinar</th>
+                      <th>Link Record</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
@@ -46,14 +48,20 @@
                             <td>{{$webinar->webinar_name}}</td>
                             <td>{{$webinar->price}}</td>
                             <td>
-                            <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="" data-original-title="Wildan Ahdian">
+                            <img alt="image" src="{{\Storage::path('public/img/'.$webinar->flyer)}}" class="rounded-circle" width="35" data-toggle="tooltip" title="" data-original-title="Wildan Ahdian">
                             </td>
                             <td>{{$webinar->closed_at}}</td>
+                            <td>{{$webinar->link_webinar}}</td>
+                            <td>{{$webinar->link_record}}</td>
                             <td><div class="badge {{$webinar->status == 'on' ? 'badge-success' : 'badge-warning'}}">{{$webinar->status == 'on' ? 'Buka' : 'Tutup'}}</div></td>
-                            <td><a href="{{url('webinar').'/'.$webinar->id}}" class="btn btn-secondary">Detail</a></td>
+                            <td>
+                              {{-- <a href="{{url('webinar').'/'.$webinar->id}}" class="btn btn-secondary">Detail</a> --}}
+                              <a href="{{route('admin.webinar.edit',['webinar' => $webinar->id])}}" class="btn btn-success">Edit</a>
+                            </td>
                         </tr>
                       @endforeach
                   </tbody>
+                  {{$webinars->links()}}
                 </table>
               </div>
             </div>

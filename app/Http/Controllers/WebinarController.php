@@ -40,6 +40,7 @@ class WebinarController extends Controller
             'webinar_name' => 'required',
             'price' => 'required',
             'closed_at' => 'required',
+            'description' => 'required',
             'flyer' => 'required|mimes:jpg,png'
         ]);
         
@@ -63,9 +64,9 @@ class WebinarController extends Controller
 
 
         if($webinar->save()){
-            return redirect()->back()->with('message-success','Tambah webinar berhasil!!');
+            return redirect()->route('admin.webinar')->with('message-success','Tambah webinar berhasil!!');
         }
-        return redirect()->back()->with('message-fail','Tambah webinar gagal!!');
+        return redirect()->route('admin.webinar')->with('message-fail','Tambah webinar gagal!!');
     }
 
     /**
@@ -93,7 +94,8 @@ class WebinarController extends Controller
      */
     public function edit($id)
     {
-        //
+        $webinar = Webinar::find($id);
+        return view('admin.webinar.edit', compact('webinar'));
     }
 
     /**
@@ -105,7 +107,31 @@ class WebinarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $webinar = Webinar::find($id);
+        
+        $webinar->flyer = $webinar->flyer;
+        
+        if($request->file('flyer')){
+            $flyer = time().$request->file('flyer')->getClientOriginalName();
+            $path = $request->file('flyer')->storeAs(
+                'public/img', $flyer
+            );
+
+            $webinar->flyer = $flyer;
+        }
+
+        $webinar->webinar_name = $request->webinar_name;
+        $webinar->price = $request->price;
+        $webinar->closed_at = $request->closed_at;
+        $webinar->link_webinar = $request->link_webinar;
+        $webinar->description = $request->description;
+        $webinar->link_record = \json_encode( $request->link_record);
+        $webinar->status = $request->status == 'on' ? 'on' : 'off';
+
+        if($webinar->save()){
+            return redirect()->route('admin.webinar')->with('message-success','Ubah webinar berhasil!!');
+        }
+        return redirect()->route('admin.webinar')->with('message-fail','Ubah webinar gagal!!');
     }
 
     /**
@@ -116,6 +142,12 @@ class WebinarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $webinar = Webinar::find($id);
+
+        if($webinar->delete())
+        {
+            return redirect()->back()->with('message-success','Hapus webinar berhasil!!');
+        }
+        return redirect()->back()->with('message-fail','Hapus webinar gagal!!');
     }
 }

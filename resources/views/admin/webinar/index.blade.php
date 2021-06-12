@@ -14,6 +14,26 @@
     <div class="section-body">
       <div class="row">
         <div class="col-12">
+          @if (session('message-success'))
+                    
+                <div class="alert alert-success alert-has-icon">
+                    <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                    <div class="alert-body">
+                        <div class="alert-title">Success</div>
+                        {{session('message-success')}}
+                    </div>
+                </div>
+                @endif
+                @if (session('message-fail'))
+                    
+                <div class="alert alert-success alert-has-icon">
+                    <div class="alert-icon"><i class="far fa-cross"></i></div>
+                    <div class="alert-body">
+                        <div class="alert-title">Fail</div>
+                        {{session('message-success')}}
+                    </div>
+                </div>
+                @endif
           <div class="card">
             <div class="card-header">
               <h4>List webinar</h4>
@@ -55,8 +75,19 @@
                             <td>{{$webinar->link_record}}</td>
                             <td><div class="badge {{$webinar->status == 'on' ? 'badge-success' : 'badge-warning'}}">{{$webinar->status == 'on' ? 'Buka' : 'Tutup'}}</div></td>
                             <td>
-                              {{-- <a href="{{url('webinar').'/'.$webinar->id}}" class="btn btn-secondary">Detail</a> --}}
-                              <a href="{{route('admin.webinar.edit',['webinar' => $webinar->id])}}" class="btn btn-success">Edit</a>
+                              <div class="btn-group" role="group" aria-label="Basic example">
+                                <div>
+                                  <a href="{{url('webinar').'/'.$webinar->id}}" class="btn btn-secondary">Detail</a>
+                                </div>
+                                <div>
+                                  <a href="{{route('admin.webinar.edit',['webinar' => $webinar->id])}}" class="btn btn-success">Edit</a>
+                                </div>
+                                <form action="{{route('admin.webinar.delete',['webinar' => $webinar->id])}}" method="post" onsubmit="return confirm('Yakin untuk hapus ? ')">
+                                  @csrf
+                                  @method('DELETE')
+                                  <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                              </div>
                             </td>
                         </tr>
                       @endforeach

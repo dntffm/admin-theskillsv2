@@ -30,6 +30,8 @@ Route::middleware(['auth'])->group(function () {
         'create' => 'admin.webinar.create',
         'store' => 'admin.webinar.store',
         'edit' => 'admin.webinar.edit',
+        'destroy' => 'admin.webinar.delete',
+        'update' => 'admin.webinar.update'
     ]);
     Route::resource('articles', 'ArticleController');
     Route::resource('user', 'UserController')->names([

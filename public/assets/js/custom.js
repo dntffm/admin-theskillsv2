@@ -12,3 +12,14 @@ function addrecord(){
 
     recordtxt.innerHTML += `<input type="text" name="link_record[]" class="mt-2 form-control">`
 }
+
+function changeapproval(){
+    const formchangeapproval = document.getElementById('formchangeapproval')
+
+    
+
+    if(confirm('Ganti status approval ?'))
+    {
+        formchangeapproval.submit()
+    }
+}

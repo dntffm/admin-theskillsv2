@@ -78,6 +78,7 @@ class WebinarController extends Controller
     public function show($id)
     {
         $webinardetail = DB::table('webinar_participants')
+                        ->select('webinar_participants.id AS wp_id','webinar_participants.user_id','webinar_participants.webinar_id','webinar_participants.created_at','webinar_participants.approval_status','users.*')
                         ->join('users','webinar_participants.user_id','=','users.id')
                         //->groupBy('webinar_participants.user_id')
                         ->where('webinar_participants.webinar_id','=',$id)

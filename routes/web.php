@@ -38,4 +38,5 @@ Route::middleware(['auth'])->group(function () {
         'index' => 'admin.user'
     ]);
 
+    Route::put('webinarparticipant/{id}', 'WebinarParticipantController@updateApprovalStatus')->name('changeapproval');
 });

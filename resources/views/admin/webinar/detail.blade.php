@@ -11,6 +11,16 @@
       </div>
     </div>
 
+    @if (session('message'))
+    <div class="alert alert-success alert-has-icon">
+        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+        <div class="alert-body">
+            <div class="alert-title">Success</div>
+            {{session('message')}}
+        </div>
+    </div>
+    @endif
+
     <div class="section-body">
       <div class="row">
         <div class="col-12">
@@ -35,7 +45,7 @@
                       <th>Nama anak</th>
                       <th>Sekolah</th>
                       <th>Kelas</th>
-                      
+                      <th>Status Approval</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -50,6 +60,17 @@
                             <td>{{$participant->child_name}}</td>
                             <td>{{$participant->school}}</td>
                             <td>{{$participant->grade}}</td>
+                            <td>
+                              
+                              <form action="{{route('changeapproval',['id' => $participant->wp_id])}}" id="formchangeapproval" method="post">
+                                @csrf
+                                @method('PUT')
+                                <select name="status" id="approvalselect" class="form-control" onchange="changeapproval()">
+                                  <option value="yes">Diterima</option>
+                                  <option value="no" {{$participant->approval_status == 'no' ? 'selected' : ''}}>Ditolak</option>
+                                </select>
+                              </form>
+                            </td>
                         </tr>
                       @endforeach
                   </tbody>

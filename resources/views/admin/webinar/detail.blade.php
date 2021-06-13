@@ -61,11 +61,10 @@
                             <td>{{$participant->school}}</td>
                             <td>{{$participant->grade}}</td>
                             <td>
-                              
-                              <form action="{{route('changeapproval',['id' => $participant->wp_id])}}" id="formchangeapproval" method="post">
+                              <form action="{{route('changeapproval',['id' => $participant->wp_id])}}" class="formchangeapproval-{{$participant->wp_id}}" method="post">
                                 @csrf
                                 @method('PUT')
-                                <select name="status" id="approvalselect" class="form-control" onchange="changeapproval()">
+                                <select name="status" class="form-control" onchange="changeapproval({{$participant->wp_id}})">
                                   <option value="yes">Diterima</option>
                                   <option value="no" {{$participant->approval_status == 'no' ? 'selected' : ''}}>Ditolak</option>
                                 </select>

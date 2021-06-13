@@ -13,8 +13,8 @@ function addrecord(){
     recordtxt.innerHTML += `<input type="text" name="link_record[]" class="mt-2 form-control">`
 }
 
-function changeapproval(){
-    const formchangeapproval = document.getElementById('formchangeapproval')
+function changeapproval(id){
+    const formchangeapproval = document.querySelector('.formchangeapproval-'+id)
 
     
 

@@ -73,7 +73,23 @@
                             <td>{{$webinar->closed_at}}</td>
                             <td>{{$webinar->link_webinar}}</td>
                             <td>{{$webinar->link_record}}</td>
-                            <td><div class="badge {{$webinar->status == 'on' ? 'badge-success' : 'badge-warning'}}">{{$webinar->status == 'on' ? 'Buka' : 'Tutup'}}</div></td>
+                            <td>
+                              @if ($webinar->status == 'on')
+                                <div class="badge badge-success">
+                                  Buka
+                                </div>
+                              @endif
+                              @if ($webinar->status == 'off')
+                                <div class="badge badge-warning">
+                                  Tutup
+                                </div>
+                              @endif
+                              @if ($webinar->status == 'selesai')
+                                <div class="badge badge-danger">
+                                  Selesai
+                                </div>
+                              @endif
+                            </td>
                             <td>
                               <div class="btn-group" role="group" aria-label="Basic example">
                                 <div>

@@ -127,7 +127,7 @@ class WebinarController extends Controller
         $webinar->link_webinar = $request->link_webinar;
         $webinar->description = $request->description;
         $webinar->link_record = \json_encode( $request->link_record);
-        $webinar->status = $request->status == 'on' ? 'on' : 'off';
+        $webinar->status = $request->status;
 
         if($webinar->save()){
             return redirect()->route('admin.webinar')->with('message-success','Ubah webinar berhasil!!');

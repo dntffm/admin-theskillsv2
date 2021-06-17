@@ -56,9 +56,9 @@
                                 <div class="control-label">Status</div>
                                 <label class="custom-switch mt-2">
                                     <select name="status" class="form-control">
-                                        <option value="on">On</option>
-                                        <option value="off">Off</option>
-                                        <option value="selesai">Selesai</option>
+                                        <option value="on" {{$webinar->status == 'on' ? 'selected' : ''}}>On</option>
+                                        <option value="off" {{$webinar->status == 'off' ? 'selected' : ''}}>Off</option>
+                                        <option value="selesai" {{$webinar->status == 'selesai' ? 'selected' : ''}}>Selesai</option>
                                     </select>
                                 </label>
                             </div>

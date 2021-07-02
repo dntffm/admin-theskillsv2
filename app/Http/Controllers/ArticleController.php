@@ -8,6 +8,16 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        return 'articles';
+        return view('admin.articles.index');
+    }
+
+    public function create()
+    {
+        return view('admin.articles.create');
+    }
+
+    public function store(Request $request)
+    {
+        return $request;
     }
 }

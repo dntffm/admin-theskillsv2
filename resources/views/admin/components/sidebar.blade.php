@@ -20,6 +20,6 @@
           <li><a class="nav-link" href="{{route('membership.index')}}"><i class="far fa-square"></i> <span>Paket Membership</span></a></li>
           <li class="menu-header">Lainnya</li>
           <li><a class="nav-link" href="{{route('admin.webinar')}}"><i class="far fa-square"></i> <span>Webinar</span></a></li>
-          <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Artikel</span></a></li>
+          <li><a class="nav-link" href="{{route('admin.articles')}}"><i class="far fa-square"></i> <span>Artikel</span></a></li>
     </aside>
   </div>

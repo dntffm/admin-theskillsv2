@@ -33,10 +33,13 @@ Route::middleware(['auth'])->group(function () {
         'destroy' => 'admin.webinar.delete',
         'update' => 'admin.webinar.update'
     ]);
-    Route::resource('articles', 'ArticleController');
+    Route::resource('articles', 'ArticleController')->names([
+        'index' => 'admin.articles',
+        'create' => 'admin.articles.create',
+        'store' => 'admin.articles.store'
+    ]);
     Route::resource('user', 'UserController')->names([
         'index' => 'admin.user'
     ]);
-
     Route::put('webinarparticipant/{id}', 'WebinarParticipantController@updateApprovalStatus')->name('changeapproval');
 });

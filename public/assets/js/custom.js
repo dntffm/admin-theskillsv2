@@ -7,6 +7,7 @@
 
 "use strict";
 
+
 function addrecord(){
     const recordtxt = document.querySelector('.linkrecordtxt');
 

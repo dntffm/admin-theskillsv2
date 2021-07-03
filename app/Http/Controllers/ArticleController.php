@@ -18,7 +18,7 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request->all(),[
+        $this->validate($request,[
             'article_title' => 'required',
             'content' => 'required'
         ]);

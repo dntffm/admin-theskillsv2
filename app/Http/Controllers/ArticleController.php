@@ -25,13 +25,14 @@ class ArticleController extends Controller
 
         $article = new Article;
 
+        $article->article_title = $request->article_title;
+        $article->content = $request->content;
+        $article->thumbnail = 'tm-default.jpg';
+        
         if($request->thumbnail){
 
         }
         
-        $article->article_title = $request->article_title;
-        $article->content = $request->content;
-
         $save = $article->save();
 
         if($save)

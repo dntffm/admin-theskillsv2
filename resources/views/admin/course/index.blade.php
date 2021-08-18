@@ -51,6 +51,8 @@
                       </th>
                       <th>Judul Course</th>
                       <th>Kind</th>
+                      <th>Harga</th>
+                      <th>Description</th>
                       <th>Thumbnail</th>
                       <th>Action</th>
                     </tr>
@@ -63,13 +65,30 @@
                             </td>
                             <td>{{$course->course_name}}</td>
                             <td>{{$course->hasTitle->title}}</td>
+                            <td>{{$course->price}}</td>
+                            <td>{{$course->description}}</td>
                             <td>
                             <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="" data-original-title="Wildan Ahdian">
                             </td>
-                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
+                            <td>
+                              <div class="btn-group" role="group" aria-label="Basic example">
+                                {{-- <div>
+                                  <a class="btn btn-secondary">Detail</a>
+                                </div> --}}
+                                <div>
+                                  <a href="{{'/course'.'/'.$course->id.'/edit'}}" class="btn btn-success">Edit</a>
+                                </div>
+                                <form action="{{'/course'.'/'.$course->id}}" method="post" onsubmit="return confirm('Yakin untuk hapus ? ')">
+                                  @csrf
+                                  @method('DELETE')
+                                  <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                              </div>
+                            </td>
                         </tr>
                       @endforeach
                   </tbody>
+                  {{$courses->links()}}
                 </table>
               </div>
             </div>

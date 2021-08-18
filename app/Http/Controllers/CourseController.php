@@ -13,7 +13,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::orderBy('created_at','desc')->paginate(15);
         return view('admin.course.index',compact('courses'));
     }
 
@@ -86,7 +86,8 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $course = Course::where('id', '=', $id)->firstOrFail();
+        return view('admin.course.edit', compact('course'));
     }
 
     /**
@@ -98,7 +99,25 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $course = Course::find($id);   
+        $course->crs_thumbnail = $course->crs_thumbnail;
+        
+        if($request->file('crs_thumbnail')){
+            $flyer = time().$request->file('crs_thumbnail')->getClientOriginalName();
+            $path = $request->file('crs_thumbnail')->storeAs(
+                'public/img', $flyer
+            );
+
+            $course->crs_thumbnail = $flyer;
+        }
+
+        $course->course_name = $request->course_name;
+        $course->description = $request->description;
+        $course->title_id = $request->title_id;
+        if($course->save()){
+            return redirect('course')->with('message-success','Ubah course berhasil!!');
+        }
+        return redirect('course')->with('message-fail','Ubah course gagal!!');
     }
 
     /**
@@ -109,6 +128,10 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $course = Course::where('id', '=', $id)->firstOrFail();
+        if($course->delete()) {
+            return redirect('course')->with('message-success', 'Berhasil hapus');
+        }
+        return redirect('course')->with('message-fail', 'Gagal hapus');
     }
 }

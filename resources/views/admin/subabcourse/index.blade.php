@@ -54,6 +54,7 @@
                       <th>Link document</th>
                       <th>Deskripsi</th>
                       <th>Bab</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -65,6 +66,21 @@
                             <td>{{$item->link_doc}}</td>
                             <td>{{$item->description}}</td>
                             <td>{{$item->subcourse->subcourse_name}}</td>
+                            <td>
+                              <div class="btn-group" role="group" aria-label="Basic example">
+                                {{-- <div>
+                                  <a class="btn btn-secondary">Detail</a>
+                                </div> --}}
+                                <div>
+                                  <a href="{{'/minicourse'.'/'.$item->id.'/edit'}}" class="btn btn-success">Edit</a>
+                                </div>
+                                <form action="{{'/minicourse'.'/'.$item->id}}" method="post" onsubmit="return confirm('Yakin untuk hapus ? ')">
+                                  @csrf
+                                  @method('DELETE')
+                                  <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                              </div>
+                            </td>
                         </tr>
                     @endforeach
                   </tbody>

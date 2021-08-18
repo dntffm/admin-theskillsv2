@@ -69,7 +69,21 @@
                             <td>
                                 <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="" data-original-title="Wildan Ahdian">
                             </td>
-                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
+                            <td>
+                              <div class="btn-group" role="group" aria-label="Basic example">
+                                {{-- <div>
+                                  <a href="" class="btn btn-secondary">Detail</a>
+                                </div> --}}
+                                <div>
+                                  <a href="{{'/subcourse'.'/'.$subcourse->id.'/edit'}}" class="btn btn-success">Edit</a>
+                                </div>
+                                <form action="{{'/subcourse'.'/'.$subcourse->id}}" method="post" onsubmit="return confirm('Yakin untuk hapus ? ')">
+                                  @csrf
+                                  @method('DELETE')
+                                  <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                              </div>
+                            </td>
                         </tr>
                       @endforeach
                   </tbody>

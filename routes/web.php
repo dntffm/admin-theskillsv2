@@ -23,7 +23,12 @@ Route::middleware(['auth'])->group(function () {
         return view('admin.dashboard.index');
     })->name('admin.dashboard');
     Route::resource('course', 'CourseController');
-    Route::resource('subcourse', 'SubcourseController');
+    Route::resource('subcourse', 'SubcourseController')->names([
+        'index' => 'subcourse.index'
+    ]);
+    Route::resource('minicourse', 'MinicourseController')->names([
+        'index' => 'minicourse.index'
+    ]);
     Route::resource('membership', 'MembershipController');
     Route::resource('webinar', 'WebinarController')->names([
         'index' => 'admin.webinar',

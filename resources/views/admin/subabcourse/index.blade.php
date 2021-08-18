@@ -1,5 +1,5 @@
 @extends('admin.layouts.general.top')
-@section('title','List course')
+@section('title', 'Bab course')
 @section('content')
 <section class="section">
     <div class="section-header">
@@ -36,10 +36,10 @@
                 @endif
           <div class="card">
             <div class="card-header">
-              <h4>List webinar</h4>
+              <h4>List SubBab Course</h4>
             </div>
             <div class="card-header">
-                <a href="{{route('course.create')}}" class="btn btn-primary">Tambah Course</a>
+                <a href="{{route('minicourse.create')}}" class="btn btn-primary">Tambah SubBab Course</a>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -49,27 +49,26 @@
                       <th class="text-center">
                         #
                       </th>
-                      <th>Judul Course</th>
-                      <th>Kind</th>
-                      <th>Thumbnail</th>
-                      <th>Action</th>
+                      <th>Judul</th>
+                      <th>Link video</th>
+                      <th>Link document</th>
+                      <th>Deskripsi</th>
+                      <th>Bab</th>
                     </tr>
                   </thead>
                   <tbody>
-                      @foreach ($courses as $index=>$course)
+                    @foreach($data as $index=>$item)
                         <tr>
-                            <td>
-                            {{$index+1}}
-                            </td>
-                            <td>{{$course->course_name}}</td>
-                            <td>{{$course->hasTitle->title}}</td>
-                            <td>
-                            <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="" data-original-title="Wildan Ahdian">
-                            </td>
-                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
+                            <td>{{$index+1}}</td>
+                            <td>{{$item->minicourse_name}}</td>
+                            <td>{{$item->link_video}}</td>
+                            <td>{{$item->link_doc}}</td>
+                            <td>{{$item->description}}</td>
+                            <td>{{$item->subcourse->subcourse_name}}</td>
                         </tr>
-                      @endforeach
+                    @endforeach
                   </tbody>
+                  {{$data->links()}}
                 </table>
               </div>
             </div>

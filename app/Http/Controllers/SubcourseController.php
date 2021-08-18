@@ -8,7 +8,7 @@ class SubcourseController extends Controller
 {
     public function index()
     {
-        $subcourses = Subcourse::all();
+        $subcourses = Subcourse::orderBy('created_at', 'desc')->paginate(15);
         return view('admin.babcourse.index',compact('subcourses'));
     }
 
@@ -19,6 +19,20 @@ class SubcourseController extends Controller
 
     public function store(Request $request)
     {
-        return $request;
+        $this->validate($request, [
+            'course_name' => 'required',
+            'title_id' => 'required',
+            'sc_thumbnail' => 'required'
+        ]);
+
+        $subcourse = new Subcourse();
+        $subcourse->subcourse_name = $request->course_name;
+        $subcourse->sc_thumbnail = $request->sc_thumbnail;
+        $subcourse->course_id = $request->title_id;
+
+        if($subcourse->save()) {
+            return redirect('subcourse')->with('message', 'SubBab course berhasil disimpan');
+        }
+        return redirect('subcourse')->with('message', 'Gagal menyimpan');
     }
 }

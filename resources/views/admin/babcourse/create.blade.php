@@ -37,10 +37,6 @@
                                 <label>Thumbnail</label>
                                 <input type="file" name="sc_thumbnail" class="form-control">
                               </div>
-                            <div class="form-group">
-                                <label>Deskripsi</label>
-                                <textarea name="description" class="form-control summernote-simple" style="margin-top: 0px; margin-bottom: 0px; height: 75px;"></textarea>
-                            </div>
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Simpan</button>

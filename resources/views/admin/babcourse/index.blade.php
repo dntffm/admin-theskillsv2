@@ -14,6 +14,26 @@
     <div class="section-body">
       <div class="row">
         <div class="col-12">
+          @if (session('message-success'))
+                    
+                <div class="alert alert-success alert-has-icon">
+                    <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                    <div class="alert-body">
+                        <div class="alert-title">Success</div>
+                        {{session('message-success')}}
+                    </div>
+                </div>
+                @endif
+                @if (session('message-fail'))
+                    
+                <div class="alert alert-success alert-has-icon">
+                    <div class="alert-icon"><i class="far fa-cross"></i></div>
+                    <div class="alert-body">
+                        <div class="alert-title">Fail</div>
+                        {{session('message-success')}}
+                    </div>
+                </div>
+                @endif
           <div class="card">
             <div class="card-header">
               <h4>List webinar</h4>
@@ -53,6 +73,7 @@
                         </tr>
                       @endforeach
                   </tbody>
+                  {{$subcourses->links()}}
                 </table>
               </div>
             </div>

@@ -23,6 +23,8 @@ Route::middleware(['auth'])->group(function () {
         return view('admin.dashboard.index');
     })->name('admin.dashboard');
     Route::resource('course', 'CourseController');
+    Route::get('coursepartisipan', 'CourseController@createpartisipan')->name('course.create.partisipan');
+    Route::post('coursepartisipan', 'CourseController@storepartisipan')->name('course.store.partisipan');
     Route::resource('subcourse', 'SubcourseController')->names([
         'index' => 'subcourse.index'
     ]);

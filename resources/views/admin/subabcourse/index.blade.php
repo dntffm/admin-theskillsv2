@@ -65,7 +65,7 @@
                             <td>{{$item->link_video}}</td>
                             <td>{{$item->link_doc}}</td>
                             <td>{{$item->description}}</td>
-                            <td>{{$item->subcourse->subcourse_name}}</td>
+                            <td>{{$item->subcourse->subcourse_name ?? ''}}</td>
                             <td>
                               <div class="btn-group" role="group" aria-label="Basic example">
                                 {{-- <div>

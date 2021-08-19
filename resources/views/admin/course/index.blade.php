@@ -39,7 +39,8 @@
               <h4>List webinar</h4>
             </div>
             <div class="card-header">
-                <a href="{{route('course.create')}}" class="btn btn-primary">Tambah Course</a>
+                <a href="{{route('course.create')}}" class="mr-2 btn btn-primary">Tambah Course</a>
+                <a href="{{route('course.create.partisipan')}}" class="btn btn-primary">Tambah Partisipan</a>
             </div>
             <div class="card-body">
               <div class="table-responsive">

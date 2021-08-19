@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Course;
+use App\CoursesTaken;
 class CourseController extends Controller
 {
     /**
@@ -25,6 +26,34 @@ class CourseController extends Controller
     public function create()
     {
         return view('admin.course.create');
+    }
+
+    public function createpartisipan()
+    {
+        return view('admin.course.create-partisipan');
+    }
+
+    public function storepartisipan(Request $request) 
+    {
+        $this->validate($request, [
+            'user_id' => 'required',
+             'course_id' => 'required'
+        ]);
+
+        $coursestaken = new CoursesTaken();
+        $coursestaken->user_id = $request->user_id;
+        $coursestaken->course_id = $request->course_id;
+        $coursestaken->c_thumbnail = 's';
+        $checkmycourses = CoursesTaken::where(['user_id' => $request->user_id, 'course_id' => $request->course_id])->first();
+
+        if($checkmycourses != null) {
+            return redirect('course')->with('message-fail', 'User sudah join course  ini');
+        }
+        if($coursestaken->save()) {
+            return redirect('course')->with('message-success', 'Sukses menambah user course');
+        }
+
+        return redirect('course')->with('message-fail', 'Gagal menambah user course');
     }
 
     /**

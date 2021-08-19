@@ -65,7 +65,7 @@
                             <td>
                               {{$subcourse->subcourse_name}}
                             </td>
-                            <td>{{$subcourse->course->course_name}}</td>
+                            <td>{{$subcourse->course->course_name ?? ''}}</td>
                             <td>
                                 <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="" data-original-title="Wildan Ahdian">
                             </td>

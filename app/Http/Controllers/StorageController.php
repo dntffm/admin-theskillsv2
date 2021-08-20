@@ -20,7 +20,7 @@ class StorageController extends Controller
     public function index($filename)
     {
   
-        $file = storage_path('app/public/'. str_replace("_",".",$filename));
+        $file = storage_path('app/public/img/'. str_replace("_",".",$filename));
         return File::get($file);
     }
 }

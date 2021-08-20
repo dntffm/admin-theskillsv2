@@ -14,6 +14,8 @@
           <li><a class="nav-link" href="{{route('subcourse.index')}}"><i class="far fa-square"></i> <span>Materi Bab Course</span></a></li>
           <li><a class="nav-link" href="{{route('minicourse.index')}}"><i class="far fa-square"></i> <span>Materi Subbab Course</span></a></li>
           
+          <li><a class="nav-link" href="{{route('schedule.index')}}"><i class="far fa-square"></i> <span>Jadwal zoom</span></a></li>
+          
           <li class="menu-header">Users</li>
           <li><a class="nav-link" href="{{route('admin.user')}}"><i class="far fa-square"></i> <span>User Terdaftar</span></a></li>
           <li class="menu-header">Membership</li>

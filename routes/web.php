@@ -28,6 +28,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('subcourse', 'SubcourseController')->names([
         'index' => 'subcourse.index'
     ]);
+
+    Route::resource('schedule', 'ScheduleController');
     Route::resource('minicourse', 'MinicourseController')->names([
         'index' => 'minicourse.index'
     ]);

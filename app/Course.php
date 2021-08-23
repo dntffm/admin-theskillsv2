@@ -21,4 +21,9 @@ class Course extends Model{
     {
         return $this->hasMany('App\Subcourse');
     }
+
+    public function usermembership()
+    {
+        return $this->hasMany('App\UserMembership');
+    }
 }

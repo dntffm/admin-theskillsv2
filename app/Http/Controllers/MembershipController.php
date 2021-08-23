@@ -39,4 +39,9 @@ class MembershipController extends Controller
     {
         return Membership::where('course_id',$courseid)->with('membership')->get();
     }
+
+    public function show()
+    {
+        # code...
+    }
 }

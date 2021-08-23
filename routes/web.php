@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
         'index' => 'minicourse.index'
     ]);
     Route::resource('membership', 'MembershipController');
+    Route::get('usermembership/preorder', 'UserMembershipController@preorder')->name('membership.preorder');
     Route::resource('webinar', 'WebinarController')->names([
         'index' => 'admin.webinar',
         'create' => 'admin.webinar.create',

@@ -15,6 +15,12 @@ class UserMembershipController extends Controller
         //
     }
 
+    public function preorder()
+    {
+        $preorders = UserMembership::orderBy('created_at', 'desc')->with(['user','course', 'membership'])->paginate(15);
+
+        return view('admin.membership.preorder', compact('preorders'));
+    }
     public function store(Request $request)
     {
         $this->validate($request,[

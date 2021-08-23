@@ -20,6 +20,7 @@
           <li><a class="nav-link" href="{{route('admin.user')}}"><i class="far fa-square"></i> <span>User Terdaftar</span></a></li>
           <li class="menu-header">Membership</li>
           <li><a class="nav-link" href="{{route('membership.index')}}"><i class="far fa-square"></i> <span>Paket Membership</span></a></li>
+          <li><a class="nav-link" href="{{route('membership.preorder')}}"><i class="far fa-square"></i> <span>Preorder Course</span></a></li>
           <li class="menu-header">Lainnya</li>
           <li><a class="nav-link" href="{{route('admin.webinar')}}"><i class="far fa-square"></i> <span>Webinar</span></a></li>
           <li><a class="nav-link" href="{{route('admin.articles')}}"><i class="far fa-square"></i> <span>Artikel</span></a></li>

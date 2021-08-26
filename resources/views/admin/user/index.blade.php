@@ -63,7 +63,8 @@
                       <th class="text-center">
                         #
                       </th>
-                      <th>Nama</th>
+                      <th>Nama Ortu</th>
+                      <th>Nama Anak</th>
                       <th>E-Mail</th>
                       <th>Username</th>
                       <th>No.telepon</th>
@@ -80,6 +81,7 @@
                             {{$index+1}}
                             </td>
                             <td>{{$user->name}}</td>
+                            <td>{{$user->child_name}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->username}}</td>
                             <td>{{$user->phone_number}}</td>

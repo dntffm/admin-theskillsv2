@@ -28,11 +28,27 @@ class CourseController extends Controller
         return view('admin.course.create');
     }
 
+    public function showpartisipan($id)
+    {
+        $course = Course::orderBy('created_at','desc')->where('id', $id)->first();
+        $users = $course->users;
+        return view('admin.course.show-partisipan', compact('users'));
+    }
+
     public function createpartisipan()
     {
         return view('admin.course.create-partisipan');
     }
 
+    public function deletepartisipan($cid, $uid)
+    {
+        $ct = CoursesTaken::where(['course_id' => $cid, 'user_id' => $uid])->first();
+
+        if($ct->delete()) {
+            return redirect('coursepartisipan'.'/'.$cid)->with('message-success', 'Berhasil hapus');
+        }
+        return redirect('coursepartisipan'.'/'/$cid)->with('message-fail', 'Gagal hapus');
+    }
     public function storepartisipan(Request $request) 
     {
         $this->validate($request, [
@@ -47,13 +63,13 @@ class CourseController extends Controller
         $checkmycourses = CoursesTaken::where(['user_id' => $request->user_id, 'course_id' => $request->course_id])->first();
 
         if($checkmycourses != null) {
-            return redirect('course')->with('message-fail', 'User sudah join course  ini');
+            return redirect('coursepartisipan')->with('message-fail', 'User sudah join course  ini');
         }
         if($coursestaken->save()) {
-            return redirect('course')->with('message-success', 'Sukses menambah user course');
+            return redirect('coursepartisipan')->with('message-success', 'Sukses menambah user course');
         }
 
-        return redirect('course')->with('message-fail', 'Gagal menambah user course');
+        return redirect('coursepartisipan')->with('message-fail', 'Gagal menambah user course');
     }
 
     /**

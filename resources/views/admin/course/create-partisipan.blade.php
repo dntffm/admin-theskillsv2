@@ -10,7 +10,26 @@
             <div class="breadcrumb-item">Advanced Forms</div>
         </div>
     </div>
-
+    @if (session('message-success'))
+                    
+                <div class="alert alert-success alert-has-icon">
+                    <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                    <div class="alert-body">
+                        <div class="alert-title">Success</div>
+                        {{session('message-success')}}
+                    </div>
+                </div>
+                @endif
+                @if (session('message-fail'))
+                    
+                <div class="alert alert-danger alert-has-icon">
+                    <div class="alert-icon"><i class="far fa-cross"></i></div>
+                    <div class="alert-body">
+                        <div class="alert-title">Fail</div>
+                        {{session('message-fail')}}
+                    </div>
+                </div>
+                @endif
     <div class="section-body">
         <form action="{{route('course.store.partisipan')}}" method="POST" enctype="multipart/form-data"> 
             @csrf
@@ -40,6 +59,7 @@
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Simpan</button>
+                            <a href="{{url('course')}}" class="btn btn-warning">Kembali</a>
                         </div>
                     </div>
                 </div>

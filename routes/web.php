@@ -25,6 +25,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('course', 'CourseController');
     Route::get('coursepartisipan', 'CourseController@createpartisipan')->name('course.create.partisipan');
     Route::post('coursepartisipan', 'CourseController@storepartisipan')->name('course.store.partisipan');
+    Route::get('coursepartisipan/{id}', 'CourseController@showpartisipan')->name('course.show.partisipan');
+    Route::delete('coursepartisipan/{cid}/{uid}', 'CourseController@deletepartisipan')->name('course.show.partisipan');
     Route::resource('subcourse', 'SubcourseController')->names([
         'index' => 'subcourse.index'
     ]);

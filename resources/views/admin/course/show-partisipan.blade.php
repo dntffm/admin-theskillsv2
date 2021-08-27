@@ -1,5 +1,5 @@
 @extends('admin.layouts.general.top')
-@section('title','List course')
+@section('title','Webinar')
 @section('content')
 <section class="section">
     <div class="section-header">
@@ -26,21 +26,31 @@
                 @endif
                 @if (session('message-fail'))
                     
-                <div class="alert alert-success alert-has-icon">
+                <div class="alert alert-danger alert-has-icon">
                     <div class="alert-icon"><i class="far fa-cross"></i></div>
                     <div class="alert-body">
                         <div class="alert-title">Fail</div>
-                        {{session('message-success')}}
+                        {{session('message-fail')}}
                     </div>
                 </div>
                 @endif
+
+                {{-- @if ($errors->any) 
+                <div class="alert alert-success alert-has-icon">
+                  <div class="alert-icon"><i class="far fa-cross"></i></div>
+                  <div class="alert-body">
+                    <div class="alert-title">Fail</div>
+                      <ul>
+                        @foreach ($errors->all() as $item)
+                        <li>{{$item}}</li>
+                        @endforeach
+                      </ul>
+                      </div>
+                  </div>
+                @endif --}}
           <div class="card">
             <div class="card-header">
-              <h4>List webinar</h4>
-            </div>
-            <div class="card-header">
-                <a href="{{route('course.create')}}" class="mr-2 btn btn-primary">Tambah Course</a>
-                <a href="{{route('course.create.partisipan')}}" class="btn btn-primary">Tambah Partisipan</a>
+              <h4>List Partisipan</h4>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -50,46 +60,42 @@
                       <th class="text-center">
                         #
                       </th>
-                      <th>Judul Course</th>
-                      <th>Kind</th>
-                      <th>Harga</th>
-                      <th>Description</th>
-                      <th>Thumbnail</th>
+                      <th>Nama Ortu</th>
+                      <th>Nama Anak</th>
+                      <th>E-Mail</th>
+                      <th>Username</th>
+                      <th>No.telepon</th>
+                      <th>Usia</th>
+                      <th>Kelas</th>
+                      <th>Sekolah</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                      @foreach ($courses as $index=>$course)
+                      @foreach ($users as $index=>$user)
                         <tr>
                             <td>
                             {{$index+1}}
                             </td>
-                            <td>{{$course->course_name}}</td>
-                            <td>{{$course->hasTitle->title}}</td>
-                            <td>{{$course->price}}</td>
-                            <td>{{$course->description}}</td>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->child_name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>{{$user->username}}</td>
+                            <td>{{$user->phone_number}}</td>
+                            <td>{{$user->age}}</td>
+                            <td>{{$user->grade}}</td>
+                            <td>{{$user->school}}</td>
                             <td>
-                            <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="" data-original-title="Wildan Ahdian">
-                            </td>
-                            <td>
-                              <div class="btn-group" role="group" aria-label="Basic example">
-                                <div>
-                                  <a href="{{'/coursepartisipan'.'/'.$course->id}}" class="btn btn-secondary">Detail</a>
-                                </div>
-                                <div>
-                                  <a href="{{'/course'.'/'.$course->id.'/edit'}}" class="btn btn-success">Edit</a>
-                                </div>
-                                <form action="{{'/course'.'/'.$course->id}}" method="post" onsubmit="return confirm('Yakin untuk hapus ? ')">
-                                  @csrf
-                                  @method('DELETE')
-                                  <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                              </div>
+                                <form action="{{'/coursepartisipan'.'/'.$user->pivot->course_id.'/'.$user->id}}" method="post" onsubmit="return confirm('Yakin untuk hapus ? ')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                  </form>
                             </td>
                         </tr>
                       @endforeach
                   </tbody>
-                  {{$courses->links()}}
+                  
                 </table>
               </div>
             </div>

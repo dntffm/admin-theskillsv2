@@ -22,12 +22,11 @@ class SubcourseController extends Controller
         $this->validate($request, [
             'course_name' => 'required',
             'title_id' => 'required',
-            'sc_thumbnail' => 'required'
         ]);
 
         $subcourse = new Subcourse();
         $subcourse->subcourse_name = $request->course_name;
-        $subcourse->sc_thumbnail = $request->sc_thumbnail;
+        $subcourse->sc_thumbnail = 'nothing';
         $subcourse->course_id = $request->title_id;
 
         if($subcourse->save()) {

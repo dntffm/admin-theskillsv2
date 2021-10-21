@@ -27,6 +27,10 @@
                                 <input type="text" name="course_name" value={{$course->course_name}} class="form-control">
                             </div>
                             <div class="form-group">
+                                <label>Harga</label>
+                                <input type="text" name="price" value={{$course->price}} class="form-control">
+                            </div>
+                            <div class="form-group">
                                 <label>Course untuk :</label>
                                 <select name="title_id" class="form-control">
                                     @foreach (App\CourseTitles::all() as $item)

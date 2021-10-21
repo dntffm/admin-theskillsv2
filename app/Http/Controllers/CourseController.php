@@ -158,6 +158,7 @@ class CourseController extends Controller
 
         $course->course_name = $request->course_name;
         $course->description = $request->description;
+        $course->price = $request->price;
         $course->title_id = $request->title_id;
         if($course->save()){
             return redirect('course')->with('message-success','Ubah course berhasil!!');
